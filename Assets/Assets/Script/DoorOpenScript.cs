@@ -8,12 +8,19 @@ public class DoorOpenScript : MonoBehaviour
 {
     [SerializeField] private GameObject Success_Panel;
 
+    private AudioManagerScript AudioManager;
+
+    private void Start()
+    {
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
             SuccessUI();
             UnlockNewLevel();
+            AudioManager.AudioPlaySFX(AudioManager.Win_Sound);
         }
     }
     private void SuccessUI()
@@ -35,11 +42,15 @@ public class DoorOpenScript : MonoBehaviour
     {
         SceneManager.LoadScene("UIScene");
         Time.timeScale = 1;
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
+
     }
 
     public void NextLevelClickOn()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
+
     }
 }

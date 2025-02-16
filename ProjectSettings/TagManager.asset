@@ -9,6 +9,8 @@ TagManager:
   - Enemi
   - woodBox
   - Key
+  - Audio
+  - PauseButton
   layers:
   - Default
   - TransparentFX

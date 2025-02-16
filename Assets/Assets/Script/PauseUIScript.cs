@@ -12,11 +12,15 @@ public class PauseUIScript : MonoBehaviour
     [SerializeField] private RectTransform Pause_Button_Rect_Transform, Pause_Rect_Transform;
     [SerializeField] private float Top_Pos_Y, Middle_Pos_Y;
     [SerializeField] private float Tween_Duration;
+    [SerializeField] private GameObject Music_Off;
+    [SerializeField] private GameObject Music_On;
+
+    private AudioManagerScript AudioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
     }
 
     // Update is called once per frame
@@ -30,6 +34,7 @@ public class PauseUIScript : MonoBehaviour
         Pause_Panel.SetActive(true);
         Time.timeScale = 0;
         PausePanelIntro();
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
 
     }
 
@@ -38,12 +43,16 @@ public class PauseUIScript : MonoBehaviour
         await PausePanelOutro();
         Pause_Panel.SetActive(false);
         Time.timeScale = 1;
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
+
     }
 
     public void MenuButtonClick()
     {
         SceneManager.LoadScene("UIScene");
         Time.timeScale = 1;
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
+
     }
 
     void PausePanelIntro()
@@ -56,5 +65,22 @@ public class PauseUIScript : MonoBehaviour
     {
         await  Pause_Rect_Transform.DOAnchorPosY(Top_Pos_Y, Tween_Duration).SetUpdate(true).AsyncWaitForCompletion();
         Pause_Button_Rect_Transform.DOAnchorPosX(-150, Tween_Duration).SetUpdate(true);
+    }
+
+    public void MuteButtonClick()
+    {
+        int ifMute = PlayerPrefs.GetInt("Mute");
+        if ( ifMute == 1)
+        {
+            Music_Off.SetActive(true);
+            Music_On.SetActive(false);
+            AudioManager.MuteAudio();
+        }
+        else if (ifMute == 0)
+        {
+            Music_Off.SetActive(false);
+            Music_On.SetActive(true);
+            AudioManager.UnMuteAudio();
+        }
     }
 }

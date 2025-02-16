@@ -8,10 +8,12 @@ public class KeyScript : MonoBehaviour
 
     public bool pickedUp ;
     private Vector2 vel;
+    private AudioManagerScript AudioManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
+
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class KeyScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !pickedUp)
         {
             pickedUp = true;
+            AudioManager.AudioPlaySFX(AudioManager.Touch_Key_Sound);
         }
     }
 }

@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4769929614043408619}
   - component: {fileID: 4769929614043408616}
-  - component: {fileID: 4769929614043408617}
   - component: {fileID: 4769929614043408622}
   - component: {fileID: 4769929614043408623}
+  - component: {fileID: 4769929614043408617}
+  - component: {fileID: 8030346362048107129}
   m_Layer: 0
   m_Name: enermies2
   m_TagString: Enemi
@@ -87,21 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4769929614043408617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4769929614043408620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaccaa9634a94e444bb9c6c3af8d3491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  Speed: 2
-  Distance_Reality: 2
 --- !u!50 &4769929614043408622
 Rigidbody2D:
   serializedVersion: 4
@@ -149,3 +135,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9444072, y: 0.92401695}
   m_EdgeRadius: 0
+--- !u!114 &4769929614043408617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769929614043408620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaccaa9634a94e444bb9c6c3af8d3491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Speed: 2
+  Distance_Reality: 4
+  KnockBack: {fileID: 8030346362048107129}
+--- !u!114 &8030346362048107129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769929614043408620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528d0a76faf6b5d48bacadca91f3d483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,9 +10,11 @@ public class LevelSelectionMenu : MonoBehaviour
     [SerializeField] private GameObject Level_Button;
 
     private float currentLevel;
+    private AudioManagerScript AudioManager;
 
     private void Start()
     {
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerScript>();
         ButtonToArray();
         int unLockedLevels = PlayerPrefs.GetInt("UnlockedLevels", 1);
         for (int i = 0; i < Buttons.Length; i++)
@@ -28,6 +30,7 @@ public class LevelSelectionMenu : MonoBehaviour
     public void OnClickLevel(int Level_Num)
     {
         SceneManager.LoadScene("Level"+ Level_Num);
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
     }
 
     private void ButtonToArray()
@@ -45,5 +48,7 @@ public class LevelSelectionMenu : MonoBehaviour
     {
         currentLevel = PlayerPrefs.GetInt("currentLevel");
         SceneManager.LoadScene("Level" + currentLevel);
+        AudioManager.AudioPlaySFX(AudioManager.On_Click_Sound);
+
     }
 }

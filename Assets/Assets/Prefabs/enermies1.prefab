@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 9044249219463099251}
   - component: {fileID: 9044249219463099248}
   - component: {fileID: 9044249219463099252}
+  - component: {fileID: 8802504309287418783}
   m_Layer: 0
   m_Name: enermies1
-  m_TagString: Untagged
+  m_TagString: Enemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,4 +149,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Speed: 3
-  Distance_Reality: 2
+  Distance_Reality: 4
+  KnockBack: {fileID: 8802504309287418783}
+--- !u!114 &8802504309287418783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044249219463099249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528d0a76faf6b5d48bacadca91f3d483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
