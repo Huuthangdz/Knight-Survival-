@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +8,7 @@ public class JoystickAttack : MonoBehaviour
     [SerializeField] private GameObject Joy_Stick;
     [SerializeField] private GameObject Joy_Stick_BG;
 
-    public Vector2 Joy_stick_Vec; 
+    public Vector2 Joy_stick_Vec; // 
     private Vector2 Joy_Stick_Touch_Position;
     private Vector2 Joy_Stick_Original_Position; 
     private float Joy_stick_radius;
@@ -17,14 +17,18 @@ public class JoystickAttack : MonoBehaviour
     {
         Joy_Stick_Original_Position = Joy_Stick_BG.transform.position;
         Joy_stick_radius = Joy_Stick_BG.GetComponent<RectTransform>().sizeDelta.y / 4;
+        Debug.Log(Joy_stick_radius);
     }
+
+
 
     // Update is called once per frame
     public void PointerDown()
     {
-        Joy_Stick.transform.position = Input.mousePosition;
-        Joy_Stick_BG.transform.position = Input.mousePosition;
-        Joy_Stick_Touch_Position = Input.mousePosition;
+        Vector2 inputPosition = Input.touchCount > 0 ? (Vector2)Input.GetTouch(0).position : Input.mousePosition;
+        Joy_Stick.transform.position = inputPosition;
+        Joy_Stick_BG.transform.position = inputPosition;
+        Joy_Stick_Touch_Position = inputPosition;
     }
 
     public void Drag(BaseEventData baseEventData)
@@ -37,11 +41,16 @@ public class JoystickAttack : MonoBehaviour
 
         if (Joy_distance < Joy_stick_radius)
         {
-            Joy_Stick.transform.position = dragPos;
+            Joy_Stick.transform.position = dragPos; // khi mà khoảng cách bé hơn bán kính thì hand sẽ bằng vị trí kéo 
         }
         else
         {
-            Joy_Stick.transform.position = Joy_Stick_Touch_Position + Joy_stick_Vec * Joy_stick_radius;
+            Joy_Stick.transform.position = Joy_Stick_Touch_Position + Joy_stick_Vec * Joy_stick_radius; 
+            /* 
+                khi khoảng cách lớn hơn bán kính tức ngón tay đã ở ngoài joyBG thì để cho hand không bị rơi ra ngoài JoyBG
+            thì hand sẽ bằng hướng nhân với bán kính là ra một vector có cùng hướng với joyVec và có cùng độ dài của bán kính, 
+            tiếp tục cộng với vector JoyTouch kết quả của phép cộng này là vị trí mới của hand giới hạn trong bán kính tối ra từ vị trí chạm ban đầu 
+            */
         }
     }
 
